@@ -2,7 +2,7 @@ import sys
 
 from PIL import Image
 
-SIZE = (32, 32)
+SIZE = (128, 64)
 
 
 def bmp_to_header(bmp_file, header_file, var_name="bitmap_data"):
@@ -32,6 +32,8 @@ if __name__ == "__main__":
 
     image = Image.open("./red-dead-redemption-2-review_81k9.1024.webp")
     image = image.resize(SIZE)
-    image = image.convert("L")
+
+    image = image.convert("1")
+
     image.save(bmp_path, format="BMP")
     bmp_to_header(bmp_path, h_path)
