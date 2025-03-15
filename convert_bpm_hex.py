@@ -23,17 +23,17 @@ def bmp_to_header(bmp_file, header_file, var_name="bitmap_data"):
         f.write(f"#endif // {var_name.upper()}_H\n")
 
     print(f"Header file '{header_file}' generated successfully.")
-    print(f"Extracted {len(pixel_data)} bytes (Expected: {SIZE[0] * SIZE[1]})")
 
 
 if __name__ == "__main__":
-    bmp_path = "./rdr2.bmp"
-    h_path = "./rdr2.h"
+    bmp_path = "./recortes/"
+    h_path = "./arduino/main/recortes/"
 
-    image = Image.open("./red-dead-redemption-2-review_81k9.1024.webp")
-    image = image.resize(SIZE)
+    for i in range(12):
+        image = Image.open(f"./recorte_{i+1}.png")
+        image = image.resize(SIZE)
 
-    image = image.convert("1")
+        image = image.convert("1")
 
-    image.save(bmp_path, format="BMP")
-    bmp_to_header(bmp_path, h_path)
+        image.save(f"{bmp_path}/recorte_{i+1}.bmp", format="BMP")
+        bmp_to_header(f"{bmp_path}/recorte_{i+1}.bmp", f"{h_path}/recorte_{i+1}.h")
