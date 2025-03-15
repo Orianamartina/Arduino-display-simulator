@@ -7,10 +7,10 @@ void setup() {
 }
 
 void loop() {
-  Serial.write("IMGSTART", 8);
+  Serial.print("IMGSTART");
   for (int i = 0; i < sizeof(bitmap_data); i++)
   {
-    Serial.write(bitmap_data[i]);
+    Serial.write(pgm_read_byte(&bitmap_data[i]));
   }
 
 }
